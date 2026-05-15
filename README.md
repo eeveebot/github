@@ -4,12 +4,12 @@
 
 ## Overview
 
-The github module lets users create GitHub issues through chat commands. After initiating issue creation, the bot sends a confirmation prompt and waits for the user to provide a description, skip it, or cancel. Issues are created on a configurable default repository via the GitHub API.
+The github module lets users create GitHub issues through chat commands. After initiating issue creation, the bot sends a confirmation prompt and waits for the user to provide a description, then confirm, or cancel. Issues are created on a configurable default repository via the GitHub API.
 
 ## Features
 
 - **`github issue create <title>`** — start creating a GitHub issue with the given title
-- **Confirmation flow** — after the command, the bot asks for a description; reply with the description text, `skip` to create without a description, or `cancel` to abort
+- **Confirmation flow** — after the command, the bot asks for a description; reply with the description text, then `confirm` to submit, or `cancel` to abort
 - **Configurable timeout** — pending confirmations expire after a configurable period (default 10 minutes)
 - **SQLite persistence** — issue records are stored in a local database for tracking
 - **Rate limiting** — configurable per-user or per-channel limits to prevent spam
@@ -29,17 +29,18 @@ Creates a GitHub issue on the configured repository.
 ```
 <user> github issue create Fix the login bug
 <bot>  user: I'll create an issue titled "Fix the login bug" on eeveebot/eevee.
-       Reply with a description, or say "skip" to create with just the title, or "cancel" to abort.
+       Send a description (one line at a time is fine), then say "confirm" when ready, or "cancel" to abort.
 <user> The login page returns a 500 error when using SSO
 <bot>  user: Issue created: https://github.com/eeveebot/eevee/issues/42
 ```
 
-**Skip the description:**
+**Confirm the issue:**
 
 ```
 <user> github issue create Update dependencies
 <bot>  user: I'll create an issue titled "Update dependencies" on eeveebot/eevee. ...
-<user> skip
+<user> The lockfile is stale and we have known CVEs
+<user> confirm
 <bot>  user: Issue created: https://github.com/eeveebot/eevee/issues/43
 ```
 
@@ -115,7 +116,7 @@ User types "github issue create Fix the bug"
    ├── Set confirmation timeout
    └── Send confirmation prompt to user
         │
-   User replies with description / skip / cancel
+   User replies with description lines, then confirm, or cancel
         │
         ▼
    NATS: broadcast.message.<UUID>
