@@ -1,6 +1,7 @@
 {
   "name": "@eeveebot/github",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "type": "module",
   "description": "GitHub integration module for eevee",
   "keywords": [
     "eevee"
@@ -16,6 +17,7 @@
     "update-libraries": "npm install --save @eeveebot/libeevee@latest"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^18.19.130",
     "@types/ws": "^8.18.1",
@@ -29,8 +31,6 @@
   "dependencies": {
     "@eeveebot/libeevee": "^4.2.2",
     "better-sqlite3": "^12.8.0",
-    "nats": "^2.29.3",
-    "undici": "^7.24.2",
-    "winston": "^3.19.0"
+    "nats": "^2.29.3"
   }
 }
