@@ -1,0 +1,14 @@
+# GitHub module configuration
+
+# Rate limit configuration
+ratelimit:
+  mode: drop
+  level: user
+  limit: 3
+  interval: 1m
+
+# Default GitHub repository for issue creation
+defaultRepo: eeveebot/eevee
+
+# Timeout for issue creation confirmation (in milliseconds, default 10 minutes)
+# confirmationTimeoutMs: 600000
