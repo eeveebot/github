@@ -31,6 +31,7 @@ import { randomUUID } from 'node:crypto';
 
 // Record module startup time for uptime tracking
 const moduleStartTime = Date.now();
+const moduleVersion = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version as string;
 
 const metrics = createModuleMetrics('github');
 
@@ -536,7 +537,7 @@ const githubCommandSub = nats.subscribe(
 natsSubscriptions.push(githubCommandSub);
 
 // Subscribe to stats.uptime and stats.emit.request
-const statsSubs = registerStatsHandlers({ nats, moduleName: 'github', startTime: moduleStartTime, metrics });
+const statsSubs = registerStatsHandlers({ nats, moduleName: 'github', startTime: moduleStartTime, version: moduleVersion, metrics });
 natsSubscriptions.push(...statsSubs);
 
 // Help information for github commands
