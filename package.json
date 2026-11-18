@@ -29,8 +29,12 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@eeveebot/libeevee": "^4.2.5",
+    "@eeveebot/libeevee": "^4.4.0",
     "better-sqlite3": "^12.8.0",
     "nats": "^2.29.3"
+  },
+  "license": "AGPL-3.0-or-later",
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true
   }
 }
